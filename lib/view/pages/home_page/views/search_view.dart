@@ -45,7 +45,7 @@ class SearchView extends ConsumerWidget {
                       )
                     : SearchTextInheritedWidget(
                         searchText: controller
-                            .searchText, // <-- Here we pass the search text to the widget tree to be used by the SearchHighlightText widget
+                            .searchText, // Here we pass the search text to the widget tree to be used by the SearchHighlightText widget
                         child: ListSmssWidget(
                           listSmss: controller.sms,
                         ),
