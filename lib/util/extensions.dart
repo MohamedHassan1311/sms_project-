@@ -1,17 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
+import 'package:sms/util/constant.dart';
 
-//make first letter capital
-extension StringExtension on String {
-  String capitalize() {
-    return "${this[0].toUpperCase()}${this.substring(1).toLowerCase()}";
-  }
-}
 
 
 extension DataTimeExtention on DateTime {
   String dateTimeFormat() {
-    return DateFormat("yyyy-MM-dd hh:mm").format(this);
+    return DateFormat("yyyy-MM-dd hh:mm a").format(this);
   }
   String dateFormat() {
     return DateFormat("yyyy-MM ").format(this);
@@ -22,4 +17,17 @@ extension DataTimeExtention on DateTime {
   }
 
 }
+// get Amount From String
+extension getAmountFromStr on String {
+  int get getAmountFromStrEX {
+    RegExp regExp = RegExp(r'\d+ ج');
+    Iterable<Match> matchhes = regExp.allMatches(this);
+    if(matchhes.isNotEmpty) {
+
+      return int.parse(matchhes.first.group(0)!.replaceAll(currencySymble, "")!);
+    }
+    else return 0;
+  }
+}
+
 

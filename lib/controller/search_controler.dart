@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:telephony/telephony.dart';
-
+import 'package:sms/util/extensions.dart';
 import '../repo/sms_repo.dart';
 import 'dart:convert';
+import 'package:sms/util/constant.dart';
 final searchController =
     ChangeNotifierProvider.autoDispose<SearchController>((ref) {
   return SearchController(ref.read);
@@ -50,13 +51,8 @@ class SearchController extends ChangeNotifier {
   sumAmountOfMassages() {
     List<int> numInMessage = [];
     smsAmount = 0.0;
-    _sms.forEach((e) => numInMessage.add(getNumFromString(e.body!)));
-    _sms.forEach((e) {
-      // print('value is--> ' + json.encode(e));
-      // Map jsonMapped = json.decode(json.encode(e));
-      // print(jsonMapped);
+    _sms.forEach((e) => numInMessage.add(e.body!.getAmountFromStrEX));
 
-    });
 
     if (numInMessage.isNotEmpty)
       smsAmount =
@@ -64,10 +60,6 @@ class SearchController extends ChangeNotifier {
     notifyListeners();
   }
 
-  int getNumFromString(String value) =>
-      int.tryParse(value.replaceAll(RegExp('[^0-9 ]'), '').split("   ").first,
-          radix: 15) ??
-      0;
   Future refresh() async {
     isLoading = true;
     await searchSMS();
