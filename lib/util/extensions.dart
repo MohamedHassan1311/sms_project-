@@ -17,14 +17,14 @@ extension DataTimeExtention on DateTime {
   }
 
 }
-// get Amount From String
+// get Amount From String by regExp
 extension getAmountFromStr on String {
   int get getAmountFromStrEX {
-    RegExp regExp = RegExp(r'\d+ ج');
-    Iterable<Match> matchhes = regExp.allMatches(this);
-    if(matchhes.isNotEmpty) {
+    RegExp regExp = RegExp(r'\d+ AED');
+    Iterable<Match> matches = regExp.allMatches(this);
+    if(matches.isNotEmpty) {
 
-      return int.parse(matchhes.first.group(0)!.replaceAll(currencySymble, "")!);
+      return int.parse(matches.first.group(0)!.replaceAll(currencySymble, "")!);
     }
     else return 0;
   }
