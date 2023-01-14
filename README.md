@@ -16,7 +16,9 @@ use  telephony plugin to get sms from phone.
 
 use  RegExp to extract amount from body of massage 
 **current currency AED**.
+
 use search_highlight_text package to highlight search text.
+
 use grouped_list to group massages by date.
  
 ## task duration 3 hours 
