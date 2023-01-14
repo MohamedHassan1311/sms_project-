@@ -9,7 +9,9 @@ To sms and copy
 Messages of selected.
 
 app use riverpod as state management.
+
 app use mvvm architecture.
+
 use  telephony plugin to get sms from phone.
 
 use  RegExp to extract amount from body of massage 
